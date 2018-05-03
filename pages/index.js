@@ -1,1 +1,5 @@
-export default () => <div>Welcome to next.js!</div>
+export default (props) => (
+  <div>
+    <h1>My Blog</h1>
+  </div>
+)
