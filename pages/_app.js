@@ -1,15 +1,14 @@
 import Nav from '../components/Nav'
 import App, {Container} from 'next/app'
 import React from 'react'
+import nextReduxWrapper from 'next-redux-wrapper'
+import makeStore from '../store/store'
 
-export default class MyApp extends App {
-  static async getInitialProps ({ Component, router, ctx }) {
-    let pageProps = {}
+class MyApp extends App {
+  static async getInitialProps ({ Component, ctx }) {
+    ctx.store.dispatch({type: 'AUTHENTICATION', payload: 'pending'});
 
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx)
-    }
-
+    const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
     return {pageProps}
   }
 
@@ -23,3 +22,5 @@ export default class MyApp extends App {
     )
   }
 }
+
+export default nextReduxWrapper(makeStore)(MyApp)
