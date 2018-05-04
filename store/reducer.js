@@ -1,12 +1,12 @@
 const defaultState = {
-  foo: ''
+  authenticated: undefined
 }
 export default (state = defaultState, action) => {
   switch (action.type) {
     case 'AUTHENTICATION':
       return {
         ...state,
-        authState: action.payload
+        authenticated: action.payload
       }
     default:
       return state

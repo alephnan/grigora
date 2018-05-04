@@ -6,7 +6,12 @@ import makeStore from '../store/store'
 
 class MyApp extends App {
   static async getInitialProps ({ Component, ctx }) {
-    ctx.store.dispatch({type: 'AUTHENTICATION', payload: 'pending'});
+    const { isServer, res, store } = ctx
+
+    const authenticated = isServer ?
+        res.locals.authenticated :
+        (await (await fetch('/authenticated', {credentials: 'same-origin'})).json()).authenticated;
+    store.dispatch({type: 'AUTHENTICATION', payload: authenticated})
 
     const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
     return {pageProps}

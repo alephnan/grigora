@@ -4,16 +4,12 @@ import Router from 'next/router'
 
 class Page extends Component {
   static async getInitialProps({store, res, isServer}) {
-    if(isServer) {
-      const isAuthenticated = res.locals.authenticated
-      if(!isAuthenticated) {
+    const state = store.getState()
+    if(!state.authenticated) {
+      if(isServer) {
         res.redirect('/login')
         res.end()
-      }
-    } else {
-      const json = await (await fetch('/authenticated', {credentials: 'same-origin'})).json()
-      const isAuthenticated = json.authenticated
-      if(!isAuthenticated) {
+      } else {
         Router.push('/login')
       }
     }
@@ -25,7 +21,7 @@ class Page extends Component {
   render() {
     return (
       <div>
-        <div>Prop from Redux: {this.props.authState}</div>
+        <div>Prop from Redux: {String(this.props.authenticated)}</div>
         <div>Prop from getInitialProps: {this.props.custom}</div>
       </div>
     )
