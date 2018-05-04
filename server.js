@@ -32,7 +32,14 @@ app.prepare()
   server.use('/auth', auth)
   server.use('/api', api)
 
+  server.get('/authenticated', (req, res) => {
+    res.send({
+      authenticated: !!req.user
+    })
+  })
+
   server.get('*', (req, res) => {
+    res.locals.authenticated = !!req.user
     return handle(req, res)
   })
 

@@ -1,8 +1,23 @@
 import {Component} from 'react'
 import {connect} from 'react-redux'
+import Router from 'next/router'
 
 class Page extends Component {
-  static getInitialProps({store}) {
+  static async getInitialProps({store, res, isServer}) {
+    if(isServer) {
+      const isAuthenticated = res.locals.authenticated
+      if(!isAuthenticated) {
+        res.redirect('/login')
+        res.end()
+      }
+    } else {
+      const json = await (await fetch('/authenticated', {credentials: 'same-origin'})).json()
+      const isAuthenticated = json.authenticated
+      if(!isAuthenticated) {
+        Router.push('/login')
+      }
+    }
+
     return {
       custom: 'custom'
     };
