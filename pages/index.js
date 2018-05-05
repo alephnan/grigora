@@ -1,7 +1,8 @@
 import {Component} from 'react'
 import {connect} from 'react-redux'
 import Router from 'next/router'
-import Section from 'grommet/components/Section'
+import Box from 'grommet/components/Box'
+import Paragraph from 'grommet/components/Paragraph'
 
 class Page extends Component {
   static async getInitialProps({store, res, isServer}) {
@@ -21,10 +22,14 @@ class Page extends Component {
   }
   render() {
     return (
-      <Section>
-        <div>Prop from Redux: {String(this.props.authenticated)}</div>
-        <div>Prop from getInitialProps: {this.props.custom}</div>
-      </Section>
+      <div>
+        <Paragraph size='xlarge'>
+          Prop from Redux: {String(this.props.authenticated)}
+        </Paragraph>
+        <Paragraph size='xlarge'>
+          Prop from getInitialProps: {this.props.custom}
+        </Paragraph>
+      </div>
     )
   }
 }

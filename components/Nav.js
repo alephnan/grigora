@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+/** Deprecated */
 export default () => (
   <div>
     <Link href="/">
