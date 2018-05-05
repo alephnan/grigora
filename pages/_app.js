@@ -32,10 +32,7 @@ import Link from 'next/link'
 import Title from 'grommet/components/Title'
 import Label from 'grommet/components/Label'
 import Tip from 'grommet/components/Tip'
-
-const NavStyle = {
-  minWidth: '200px'
-}
+import Animate from 'grommet/components/Animate'
 
 const pageViewStyle = {
   borderRadius: '15px',
@@ -63,9 +60,11 @@ class MyApp extends App {
       <Container>
         <GrommetApp>
           <Header>
+            <Animate enter={{"animation": "fade", "duration": 4000, "delay": 0}}>
             <Title>
               <IconCloud /> Bezel
             </Title>
+            </Animate>
             <Box flex={true}
               justify='end'
               direction='row'
@@ -85,10 +84,8 @@ class MyApp extends App {
                   icon={<IconCli />}>
               </Anchor>
               <Menu icon={<IconCaretDown />}
-                dropAlign={{"right": "right"}}>
-                            <Anchor href='#'
-                    icon={<IconLanguage />}
-                    >
+                  dropAlign={{"right": "right"}}>
+                <Anchor href='#' icon={<IconLanguage />}>
                   Language
                 </Anchor>
                 <Anchor href='#'
@@ -111,44 +108,42 @@ class MyApp extends App {
           </Header>
           <Split flex='right'
               showOnResponsive='both'>
-            <Box pad='medium'>
-              <Box>
-                <Menu size="large"
-                    style={NavStyle}
-                    padding='none'>
-                  <Link href="/">
-                    <Anchor
-                        icon={<IconDashboard />}
-                        label='Overview'>
-                    </Anchor>
-                  </Link>
-                  <Link href="/version">
+            <Animate enter={{"animation": "slide-left", "duration": 1000, "delay": 300}}>
+              <Box pad='medium'>
+                <Box>
+                  <Menu size="large"
+                      padding='none'>
+                    <Link href="/">
+                      <Anchor
+                          icon={<IconDashboard />}
+                          label='Overview'>
+                      </Anchor>
+                    </Link>
+                      <Anchor href='#'
+                          icon={<IconInstall />}
+                          label='Products'>
+                      </Anchor>
                     <Anchor href='#'
-                        icon={<IconInstall />}
-                        label='Products'>
+                        icon={<IconActivity />}
+                        label='Activity'>
                     </Anchor>
-                  </Link>
-                  <Anchor href='#'
-                      icon={<IconActivity />}
-                      label='Activity'>
-                  </Anchor>
-                  <Anchor href='#'
-                      icon={<IconGroup />}
-                      label='Admin'>
-                  </Anchor>
-                  <Anchor href='#'
-                      icon={<IconBilling />}
-                      label='Billing'>
-                  </Anchor>
-                </Menu>
+                    <Anchor href='#'
+                        icon={<IconGroup />}
+                        label='Admin'>
+                    </Anchor>
+                    <Anchor href='#'
+                        icon={<IconBilling />}
+                        label='Billing'>
+                    </Anchor>
+                  </Menu>
+                </Box>
+                <Box separator='top'>
+                  <Label uppercase='true'  id='pinboard'>
+                    <IconPin /> Pinned
+                  </Label>
+                </Box>
               </Box>
-              <Box separator='top'>
-                <Label uppercase='true'  id='pinboard'>
-                  <IconPin /> Pinned
-                </Label>
-
-              </Box>
-            </Box>
+            </Animate>
             <Box colorIndex='light-2'
                 style={pageViewStyle}
                 pad='medium'>
