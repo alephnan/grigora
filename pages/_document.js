@@ -1,11 +1,12 @@
 import Document, { Head, Main, NextScript } from 'next/document'
+import '../style.scss'
 
 export default class MyDocument extends Document {
   render() {
     return (
       <html>
         <Head>
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/grommet/1.10.1/grommet.min.css" />
+          <link rel="stylesheet" href="/_next/static/style.css" />
         </Head>
         <body>
           <Main />
