@@ -3,6 +3,7 @@ import App, {Container} from 'next/app'
 import React from 'react'
 import nextReduxWrapper from 'next-redux-wrapper'
 import makeStore from '../store/store'
+import GrommetApp from 'grommet/components/App';
 
 class MyApp extends App {
   static async getInitialProps ({ Component, ctx }) {
@@ -21,8 +22,10 @@ class MyApp extends App {
     const {Component, pageProps} = this.props
     return (
       <Container>
-        <Nav />
-        <Component {...pageProps} />
+        <GrommetApp>
+          <Nav />
+          <Component {...pageProps} />
+        </GrommetApp>
       </Container>
     )
   }

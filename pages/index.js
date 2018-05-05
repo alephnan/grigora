@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import {connect} from 'react-redux'
 import Router from 'next/router'
+import Section from 'grommet/components/Section'
 
 class Page extends Component {
   static async getInitialProps({store, res, isServer}) {
@@ -20,10 +21,10 @@ class Page extends Component {
   }
   render() {
     return (
-      <div>
+      <Section>
         <div>Prop from Redux: {String(this.props.authenticated)}</div>
         <div>Prop from getInitialProps: {this.props.custom}</div>
-      </div>
+      </Section>
     )
   }
 }
