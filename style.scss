@@ -1,1 +1,22 @@
-@import 'grommet/scss/vanilla/index'
+@import 'grommet/scss/vanilla/index';
+@import '~slick-carousel/slick/slick.css';
+
+.grommet {
+  #slider-container {
+    margin-bottom: 30px;
+    .slick-dots button {
+      font-size: 0px;
+    }
+    button:not(.grommetux-button) {
+      border: initial;
+    }
+    button:not(.grommetux-button):focus {
+      box-shadow: initial;
+    }
+  }
+}
+
+#pin-box {
+  border: 2px dashed #a8a8a8;
+  padding: 20px;
+}
