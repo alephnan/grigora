@@ -39,6 +39,10 @@ import Tip from 'grommet/components/Tip'
 import Animate from 'grommet/components/Animate'
 import Slider from 'react-slick'
 import Paragraph from 'grommet/components/Paragraph'
+import Button from 'grommet/components/Button'
+import Columns from 'grommet/components/Columns'
+import Sidebar from 'grommet/components/Sidebar';
+
 
 // TODO: Replace temp product icons with actual ones
 import IconAppEngine from 'grommet/components/icons/base/Launch'
@@ -86,10 +90,10 @@ class MyApp extends App {
         <GrommetApp>
           <Header>
             <Animate enter={{"animation": "fade", "duration": 4000, "delay": 0}}>
-            <Title>
-              <IconCloud/>
-              Bezel
-            </Title>
+              <Title>
+                <IconCloud/>
+                Bezel
+              </Title>
             </Animate>
             <Box flex={true}
               justify='end'
@@ -108,9 +112,6 @@ class MyApp extends App {
               </Anchor>
               <Anchor href='#'
                   icon={<IconShell />}>
-              </Anchor>
-              <Anchor href='#'
-                  icon={<IconApps />}>
               </Anchor>
               <Menu icon={<IconCaretDown />}
                   dropAlign={{"right": "right"}}>
@@ -136,11 +137,6 @@ class MyApp extends App {
             </Box>
           </Header>
           <Box id="slider-container" style={{paddingLeft: '25px', paddingRight: '25px'}}>
-            <Label
-                uppercase='true'
-                margin='small'>
-              Recent Products:
-            </Label>
             <Slider {...carouselSettings}
                 prevArrow={<IconPrev/>}
                 nextArrow={<IconNext/>}>
@@ -191,11 +187,11 @@ class MyApp extends App {
               </Box>
             </Slider>
           </Box>
-          <Split flex='right'
-              showOnResponsive='both'>
+          <Split fixed={false} flex='right' showOnResponsive='both' >
             <Animate enter={{"animation": "slide-left", "duration": 1000, "delay": 300}}>
-              <Box margin={{vertical: 'none', right: 'large'}}>
-                <Box>
+              <Sidebar full={false}>
+                <Box flex='grow'
+                  justify='start'>
                   <Menu size="large"
                       padding='none'>
                     <Link href="/">
@@ -226,16 +222,18 @@ class MyApp extends App {
                     </Anchor>
                   </Menu>
                 </Box>
-                <Box separator='top'>
-                  <Label uppercase='true'  id='pinboard'>
+                <Box>
+                  <Label uppercase='true' id='pinboard'>
                     <IconPin /> Pinned
                   </Label>
-                  <Box id='pin-box'>
-                    <Paragraph>Drag a product here</Paragraph>
-                    <IconDragDrop style={{display:'block', margin: 'auto'}} />
+                  <Box pad='medium'>
+                    <Box id='pin-box' textAlign='center'>
+                      <Paragraph>Drag a product here</Paragraph>
+                      <IconDragDrop style={{display:'block', margin: 'auto'}} />
+                    </Box>
                   </Box>
                 </Box>
-              </Box>
+              </Sidebar>
             </Animate>
             <Box style={pageViewStyle}
                 pad='medium'>
