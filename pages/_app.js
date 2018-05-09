@@ -17,6 +17,7 @@ import IconShell from 'grommet/components/icons/base/Cli'
 import IconBug from 'grommet/components/icons/base/Bug'
 import IconConfigure from 'grommet/components/icons/base/Configure'
 import IconNext from 'grommet/components/icons/base/Next'
+import IconPrev from 'grommet/components/icons/base/Previous'
 import IconApps from 'grommet/components/icons/base/Apps'
 import IconHelp from 'grommet/components/icons/base/CircleQuestion'
 import IconBilling from 'grommet/components/icons/base/CreditCard'
@@ -52,17 +53,17 @@ import IconPubSub from 'grommet/components/icons/base/Plan'
 import IconML from 'grommet/components/icons/base/Grid'
 
 const pageViewStyle = {
-  borderRadius: '15px',
-  marginRight: '10px',
+  borderRadius: '20px',
   minHeight: '500px',
+  backgroundColor: '#fafafa',
 }
 
 const carouselSettings = {
   dots: true,
   infinite: true,
   speed: 500,
-  slidesToShow: 5,
-  slidesToScroll: 5,
+  slidesToShow: 8,
+  slidesToScroll: 8,
 }
 
 class MyApp extends App {
@@ -86,7 +87,8 @@ class MyApp extends App {
           <Header>
             <Animate enter={{"animation": "fade", "duration": 4000, "delay": 0}}>
             <Title>
-              <IconCloud /> Bezel
+              <IconCloud/>
+              Bezel
             </Title>
             </Animate>
             <Box flex={true}
@@ -133,42 +135,60 @@ class MyApp extends App {
               </Menu>
             </Box>
           </Header>
-          <Box id="slider-container">
+          <Box id="slider-container" style={{paddingLeft: '25px', paddingRight: '25px'}}>
             <Label
                 uppercase='true'
                 margin='small'>
               Recent Products:
             </Label>
             <Slider {...carouselSettings}
-                prevArrow={<div/>}
+                prevArrow={<IconPrev/>}
                 nextArrow={<IconNext/>}>
-              <Anchor href='#' icon={<IconAppEngine />} align='center'>
-                App Engine
-              </Anchor>
-              <Anchor href='#' icon={<IconKubernetes />}  align='center'>
-                Kubernetes
-              </Anchor>
-              <Anchor href='#' icon={<IconCompute/>} align='center'>
-                Compute
-              </Anchor>
-              <Anchor href='#' icon={<IconSQL/>} align='center'>
-                SQL
-              </Anchor>
-              <Anchor href='#' icon={<IconBigQuery/>}  align='center'>
-                BigQuery
-              </Anchor>
-              <Anchor href='#' icon={<IconStorage/>} align='center'>
-                Storage
-              </Anchor>
-              <Anchor href='#' icon={<IconDatastore/>} align='center'>
-                Datastore
-              </Anchor>
-              <Anchor href='#' icon={<IconPubSub/>} align='center'>
-                PubSub
-              </Anchor>
-              <Anchor href='#' icon={<IconML/>} align='center'>
-                Machine Learning
-              </Anchor>
+              <Box textAlign='center'>
+                <Anchor href='#' icon={<IconAppEngine />}>
+                  <Box>App Engine</Box>
+                </Anchor>
+              </Box>
+              <Box textAlign='center'>
+                <Anchor href='#' icon={<IconKubernetes />}>
+                  <Box>Kubernetes</Box>
+                </Anchor>
+              </Box>
+              <Box textAlign='center'>
+                <Anchor href='#' icon={<IconCompute/>}>
+                  <Box>Compute</Box>
+                </Anchor>
+              </Box>
+              <Box textAlign='center'>
+                <Anchor href='#' icon={<IconSQL/>}>
+                  <Box>SQL</Box>
+                </Anchor>
+              </Box>
+              <Box textAlign='center'>
+                <Anchor href='#' icon={<IconBigQuery/>}>
+                  <Box>BigQuery</Box>
+                </Anchor>
+              </Box>
+              <Box textAlign='center'>
+                <Anchor href='#' icon={<IconStorage/>}>
+                  <Box>Storage</Box>
+                </Anchor>
+              </Box>
+              <Box textAlign='center'>
+                <Anchor href='#' icon={<IconDatastore/>}>
+                  <Box>Datastore</Box>
+                </Anchor>
+              </Box>
+              <Box textAlign='center'>
+                <Anchor href='#' icon={<IconPubSub/>}>
+                  <Box>PubSub</Box>
+                </Anchor>
+              </Box>
+              <Box textAlign='center'>
+                <Anchor href='#' icon={<IconML/>}>
+                  <Box>Machine Learning</Box>
+                </Anchor>
+              </Box>
             </Slider>
           </Box>
           <Split flex='right'
@@ -217,8 +237,7 @@ class MyApp extends App {
                 </Box>
               </Box>
             </Animate>
-            <Box colorIndex='light-2'
-                style={pageViewStyle}
+            <Box style={pageViewStyle}
                 pad='medium'>
               <Component {...pageProps} />
             </Box>
