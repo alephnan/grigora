@@ -20,6 +20,32 @@ router.use('/', (req, res, next) => {
   next()
 })
 
+router.get('/billing/accounts', (req, res) => {
+  const path = ' https://cloudbilling.googleapis.com/v1/billingAccounts';
+  const config = {
+    headers: {
+      Authorization: `Bearer ${res.locals.accessToken}`
+    }
+  };
+  return axios(path, config).then(({data}) => {
+    const {billingAccounts} = data
+    if (!billingAccounts) {
+      res.status(404).end()
+    } else {
+      res.json(billingAccounts)
+    }
+  }).catch(e => {
+    const error = e.response.data.error
+    if(error.code == 403) {
+      if(error.message.includes('has not been used in project')) {
+        console.log(error.message)
+      }
+    }
+    res.status(error.code).end()
+  })
+});
+
+
 router.get('/projects', (req, res) => {
   const path = 'https://cloudresourcemanager.googleapis.com/v1/projects'
   const config = {
@@ -41,6 +67,7 @@ router.get('/projects', (req, res) => {
         console.log(error.message)
       }
     }
+    res.status(error.code).end()
   })
 })
 
