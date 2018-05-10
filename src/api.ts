@@ -1,6 +1,6 @@
-const axios = require('axios')
-const express = require('express')
-const tokenStore = require('./auth/google_token_store')
+import * as axios from 'axios'
+import * as express from 'express'
+import { tokenStore } from './auth/google_token_store'
 
 const router = express.Router();
 
@@ -27,8 +27,8 @@ router.get('/billing/accounts', (req, res) => {
       Authorization: `Bearer ${res.locals.accessToken}`
     }
   };
-  return axios(path, config).then(({data}) => {
-    const {billingAccounts} = data
+  return axios(path, config).then(({ data }) => {
+    const { billingAccounts } = data
     if (!billingAccounts) {
       res.status(404).end()
     } else {
@@ -36,8 +36,8 @@ router.get('/billing/accounts', (req, res) => {
     }
   }).catch(e => {
     const error = e.response.data.error
-    if(error.code == 403) {
-      if(error.message.includes('has not been used in project')) {
+    if (error.code == 403) {
+      if (error.message.includes('has not been used in project')) {
         console.log(error.message)
       }
     }
@@ -62,8 +62,8 @@ router.get('/projects', (req, res) => {
     }
   }).catch(e => {
     const error = e.response.data.error
-    if(error.code == 403) {
-      if(error.message.includes('Cloud Resource Manager API has not been used in project')) {
+    if (error.code == 403) {
+      if (error.message.includes('Cloud Resource Manager API has not been used in project')) {
         console.log(error.message)
       }
     }

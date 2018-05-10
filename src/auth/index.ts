@@ -1,36 +1,40 @@
-const express = require('express')
-const passport = require('passport')
+import * as express from 'express'
+import * as passport from 'passport'
+import secrets from './google_secrets';
+
+import { Strategy as GoogleStrategy } from 'passport-google-oauth20'
+import { tokenStore } from './google_token_store'
+
 const {
   web: {
     client_id: GOOGLE_CLIENT_ID,
     client_secret: GOOGLE_CLIENT_SECRET,
     redirect_uris
-    }
-} = require('./google_secrets')
-const { Strategy: GoogleStrategy } = require('passport-google-oauth20')
-const tokenStore = require('./google_token_store')
+  }
+} = secrets;
 
 passport.use(new GoogleStrategy({
   clientID: GOOGLE_CLIENT_ID,
   clientSecret: GOOGLE_CLIENT_SECRET,
-  callbackURL: redirect_uris[0]},
-(accessToken, refreshToken, profile, cb) => {
-  const googleId = profile.id;
+  callbackURL: redirect_uris[0]
+},
+  (accessToken, refreshToken, profile, cb) => {
+    const googleId = profile.id;
 
-  const prevRefreshToken = tokenStore.getRefreshToken(googleId)
-  // Get new refresh token.
-  if (!refreshToken && !prevRefreshToken) {
-    return cb(null, false);
-  }
-  refreshToken = refreshToken || prevRefreshToken
-  tokenStore.setRefreshToken(googleId, refreshToken);
-  tokenStore.setAccessToken(refreshToken, {
-    accessToken,
-    expiration: 'foo',
-  })
-  const user = { id: googleId }
-  return cb(null, user)
-}))
+    const prevRefreshToken = tokenStore.getRefreshToken(googleId)
+    // Get new refresh token.
+    if (!refreshToken && !prevRefreshToken) {
+      return cb(null, false);
+    }
+    refreshToken = refreshToken || prevRefreshToken
+    tokenStore.setRefreshToken(googleId, refreshToken);
+    tokenStore.setAccessToken(refreshToken, {
+      accessToken,
+      expiration: 'foo',
+    })
+    const user = { id: googleId }
+    return cb(null, user)
+  }))
 passport.serializeUser((user, done) => {
   done(null, user)
 })

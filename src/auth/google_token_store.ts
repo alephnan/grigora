@@ -1,5 +1,5 @@
-const fs = require('fs')
-const jsonfile = require('jsonfile')
+import * as fs from 'fs'
+import * as jsonfile from 'jsonfile'
 
 const REFRESH_TOKEN_FILE_PATH = './src/auth/refresh_tokens.json'
 const ACCESS_TOKEN_FILE_PATH = './src/auth/access_tokens.json'
@@ -7,12 +7,12 @@ const ACCESS_TOKEN_FILE_PATH = './src/auth/access_tokens.json'
 // TODO: Persist to Memcached instead of flat file.
 class TokenStore {
   setRefreshToken(id, refreshToken) {
-    if(!id) throw new Error('id not provided')
-    if(!refreshToken) throw new Error('refresh Token not provided')
+    if (!id) throw new Error('id not provided')
+    if (!refreshToken) throw new Error('refresh Token not provided')
 
     const obj = fs.existsSync(REFRESH_TOKEN_FILE_PATH) ? jsonfile.readFileSync(REFRESH_TOKEN_FILE_PATH) : {}
     // Refresh token unchanged. Don't need to update.
-    if(obj[id] == refreshToken) {
+    if (obj[id] == refreshToken) {
       return;
     } else {
       obj[id] = refreshToken
@@ -44,4 +44,4 @@ class TokenStore {
   }
 }
 
-module.exports = new TokenStore()
+export const tokenStore = new TokenStore()
