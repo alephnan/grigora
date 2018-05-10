@@ -1,5 +1,5 @@
 import Nav from '../components/Nav'
-import App, {Container} from 'next/app'
+import App, { Container } from 'next/app'
 import React from 'react'
 import nextReduxWrapper from 'next-redux-wrapper'
 import makeStore from '../store/store'
@@ -42,7 +42,7 @@ import Paragraph from 'grommet/components/Paragraph'
 import Button from 'grommet/components/Button'
 import Columns from 'grommet/components/Columns'
 import Sidebar from 'grommet/components/Sidebar';
-
+import { Provider } from 'react-redux'
 
 // TODO: Replace temp product icons with actual ones
 import IconAppEngine from 'grommet/components/icons/base/Launch'
@@ -71,27 +71,27 @@ const carouselSettings = {
 }
 
 class MyApp extends App {
-  static async getInitialProps ({ Component, ctx }) {
+  static async getInitialProps({ Component, ctx }) {
     const { isServer, res, store } = ctx
 
     const authenticated = isServer ?
-        res.locals.authenticated :
-        (await (await fetch('/authenticated', {credentials: 'same-origin'})).json()).authenticated;
-    store.dispatch({type: 'AUTHENTICATION', payload: authenticated})
+      res.locals.authenticated :
+      (await (await fetch('/authenticated', { credentials: 'same-origin' })).json()).authenticated;
+    store.dispatch({ type: 'AUTHENTICATION', payload: authenticated })
 
     const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
-    return {pageProps}
+    return { pageProps }
   }
 
-  render () {
-    const {Component, pageProps} = this.props
+  render() {
+    const { Component, pageProps, store } = this.props
     return (
       <Container>
         <GrommetApp>
           <Header>
-            <Animate enter={{"animation": "fade", "duration": 4000, "delay": 0}}>
+            <Animate enter={{ "animation": "fade", "duration": 4000, "delay": 0 }}>
               <Title>
-                <IconCloud/>
+                <IconCloud />
                 Bezel
               </Title>
             </Animate>
@@ -103,43 +103,43 @@ class MyApp extends App {
                 fill={true}
                 size='medium'
                 placeHolder='Search'
-                dropAlign={{"right": "right"}} />
+                dropAlign={{ "right": "right" }} />
               <Anchor href='#'
-                  icon={<IconHelp />}>
+                icon={<IconHelp />}>
               </Anchor>
               <Anchor href='#'
-                  icon={<IconMail />}>
+                icon={<IconMail />}>
               </Anchor>
               <Anchor href='#'
-                  icon={<IconShell />}>
+                icon={<IconShell />}>
               </Anchor>
               <Menu icon={<IconCaretDown />}
-                  dropAlign={{"right": "right"}}>
+                dropAlign={{ "right": "right" }}>
                 <Anchor href='#' icon={<IconLanguage />}>
                   Language
                 </Anchor>
                 <Anchor href='#'
-                    icon={<IconConfigure />}
-                    >
+                  icon={<IconConfigure />}
+                >
                   Preferences
                 </Anchor>
                 <Anchor href='#'
-                    icon={<IconBug />}
-                    >
+                  icon={<IconBug />}
+                >
                   Report Bug
                 </Anchor>
                 <Anchor href='#'
-                    icon={<IconLogout />}
-                    >
+                  icon={<IconLogout />}
+                >
                   Signout
                 </Anchor>
               </Menu>
             </Box>
           </Header>
-          <Box id="slider-container" style={{paddingLeft: '25px', paddingRight: '25px'}}>
+          <Box id="slider-container" style={{ paddingLeft: '25px', paddingRight: '25px' }}>
             <Slider {...carouselSettings}
-                prevArrow={<IconPrev/>}
-                nextArrow={<IconNext/>}>
+              prevArrow={<IconPrev />}
+              nextArrow={<IconNext />}>
               <Box textAlign='center'>
                 <Anchor href='#' icon={<IconAppEngine />}>
                   <Box>App Engine</Box>
@@ -151,74 +151,74 @@ class MyApp extends App {
                 </Anchor>
               </Box>
               <Box textAlign='center'>
-                <Anchor href='#' icon={<IconCompute/>}>
+                <Anchor href='#' icon={<IconCompute />}>
                   <Box>Compute</Box>
                 </Anchor>
               </Box>
               <Box textAlign='center'>
-                <Anchor href='#' icon={<IconSQL/>}>
+                <Anchor href='#' icon={<IconSQL />}>
                   <Box>SQL</Box>
                 </Anchor>
               </Box>
               <Box textAlign='center'>
-                <Anchor href='#' icon={<IconBigQuery/>}>
+                <Anchor href='#' icon={<IconBigQuery />}>
                   <Box>BigQuery</Box>
                 </Anchor>
               </Box>
               <Box textAlign='center'>
-                <Anchor href='#' icon={<IconStorage/>}>
+                <Anchor href='#' icon={<IconStorage />}>
                   <Box>Storage</Box>
                 </Anchor>
               </Box>
               <Box textAlign='center'>
-                <Anchor href='#' icon={<IconDatastore/>}>
+                <Anchor href='#' icon={<IconDatastore />}>
                   <Box>Datastore</Box>
                 </Anchor>
               </Box>
               <Box textAlign='center'>
-                <Anchor href='#' icon={<IconPubSub/>}>
+                <Anchor href='#' icon={<IconPubSub />}>
                   <Box>PubSub</Box>
                 </Anchor>
               </Box>
               <Box textAlign='center'>
-                <Anchor href='#' icon={<IconML/>}>
+                <Anchor href='#' icon={<IconML />}>
                   <Box>Machine Learning</Box>
                 </Anchor>
               </Box>
             </Slider>
           </Box>
           <Split fixed={false} flex='right' showOnResponsive='both' >
-            <Animate enter={{"animation": "slide-left", "duration": 1000, "delay": 300}}>
+            <Animate enter={{ "animation": "slide-left", "duration": 1000, "delay": 300 }}>
               <Sidebar full={false}>
                 <Box flex='grow'
                   justify='start'>
                   <Menu size="large"
-                      padding='none'>
+                    padding='none'>
                     <Link href="/">
                       <Anchor
-                          icon={<IconDashboard />}
-                          label='Overview'>
+                        icon={<IconDashboard />}
+                        label='Overview'>
                       </Anchor>
                     </Link>
                     <Anchor href='#'
-                        icon={<IconActivity />}
-                        label='Activity'>
+                      icon={<IconActivity />}
+                      label='Activity'>
                     </Anchor>
                     <Anchor href='#'
-                        icon={<IconActivity />}
-                        label='APIs'>
+                      icon={<IconActivity />}
+                      label='APIs'>
                     </Anchor>
                     <Anchor href='#'
-                        icon={<IconGroup />}
-                        label='Admin'>
+                      icon={<IconGroup />}
+                      label='Admin'>
                     </Anchor>
                     <Anchor href='#'
-                        icon={<IconBilling />}
-                        label='Billing'>
+                      icon={<IconBilling />}
+                      label='Billing'>
                     </Anchor>
                     <Anchor href='#'
-                        icon={<IconStart />}
-                        label='Start'>
+                      icon={<IconStart />}
+                      label='Start'>
                     </Anchor>
                   </Menu>
                 </Box>
@@ -229,15 +229,17 @@ class MyApp extends App {
                   <Box pad='medium'>
                     <Box id='pin-box' textAlign='center'>
                       <Paragraph>Drag a product here</Paragraph>
-                      <IconDragDrop style={{display:'block', margin: 'auto'}} />
+                      <IconDragDrop style={{ display: 'block', margin: 'auto' }} />
                     </Box>
                   </Box>
                 </Box>
               </Sidebar>
             </Animate>
             <Box style={pageViewStyle}
-                pad='medium'>
-              <Component {...pageProps} />
+              pad='medium'>
+              <Provider store={store}>
+                <Component {...pageProps} />
+              </Provider>
             </Box>
           </Split>
         </GrommetApp>

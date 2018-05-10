@@ -1,14 +1,14 @@
-import {Component} from 'react'
-import {connect} from 'react-redux'
+import { Component } from 'react'
+import { connect } from 'react-redux'
 import Router from 'next/router'
 import Box from 'grommet/components/Box'
 import Paragraph from 'grommet/components/Paragraph'
 
 class Page extends Component {
-  static async getInitialProps({store, res, isServer}) {
+  static async getInitialProps({ store, res, isServer }) {
     const state = store.getState()
-    if(!state.authenticated) {
-      if(isServer) {
+    if (!state.authenticated) {
+      if (isServer) {
         res.redirect('/login')
         res.end()
       } else {
@@ -23,10 +23,10 @@ class Page extends Component {
   render() {
     return (
       <div>
-        <Paragraph size='xlarge'>
+        <Paragraph size='xlarge' >
           Prop from Redux: {String(this.props.authenticated)}
         </Paragraph>
-        <Paragraph size='xlarge'>
+        < Paragraph size='xlarge' >
           Prop from getInitialProps: {this.props.custom}
         </Paragraph>
       </div>
@@ -34,4 +34,5 @@ class Page extends Component {
   }
 }
 
-export default connect(state => state)(Page)
+const mapStateToProps = state => state;
+export default connect(mapStateToProps)(Page);
