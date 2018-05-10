@@ -1,8 +1,8 @@
 import * as fs from 'fs'
 import * as jsonfile from 'jsonfile'
 
-const REFRESH_TOKEN_FILE_PATH = './src/auth/refresh_tokens.json'
-const ACCESS_TOKEN_FILE_PATH = './src/auth/access_tokens.json'
+const REFRESH_TOKEN_FILE_PATH = './src/server/auth/refresh_tokens.json'
+const ACCESS_TOKEN_FILE_PATH = './src/server/auth/access_tokens.json'
 
 // TODO: Persist to Memcached instead of flat file.
 class TokenStore {
