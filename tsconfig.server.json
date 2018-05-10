@@ -5,6 +5,6 @@
     "outDir": "production-server/"
   },
   "include": [
-    "server/**/*.ts"
+    "src/server/**/*.ts"
   ]
 }

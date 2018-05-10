@@ -1,8 +1,8 @@
 const fs = require('fs')
 const jsonfile = require('jsonfile')
 
-const REFRESH_TOKEN_FILE_PATH = './auth/refresh_tokens.json'
-const ACCESS_TOKEN_FILE_PATH = './auth/access_tokens.json'
+const REFRESH_TOKEN_FILE_PATH = './src/auth/refresh_tokens.json'
+const ACCESS_TOKEN_FILE_PATH = './src/auth/access_tokens.json'
 
 // TODO: Persist to Memcached instead of flat file.
 class TokenStore {

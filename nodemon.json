@@ -5,7 +5,7 @@
     ".next"
   ],
   "watch": [
-    "server/**/*"
+    "src/server/**/*"
   ],
   "ext": "ts",
   "execMap": {

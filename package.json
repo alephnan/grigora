@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server/index.ts",
-    "build": "next build && tsc --project tsconfig.server.json",
-    "start": "next start"
+    "dev": "nodemon src/server/index.ts",
+    "build": "next build src && tsc --project tsconfig.server.json",
+    "start": "next start src"
   },
   "author": "",
   "license": "ISC",
