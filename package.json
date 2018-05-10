@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "nodemon server",
     "build": "next build",
     "start": "next start"
   },
@@ -30,5 +30,8 @@
     "react-slick": "^0.23.1",
     "redux": "^4.0.0",
     "slick-carousel": "^1.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.4"
   }
 }

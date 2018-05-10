@@ -1,5 +1,5 @@
-const api = require('./api')
-const auth = require('./auth')
+const api = require('../api')
+const auth = require('../auth')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const express = require('express')
