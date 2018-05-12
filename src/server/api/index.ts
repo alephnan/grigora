@@ -2,14 +2,14 @@ import * as axios from 'axios'
 import * as express from 'express'
 import { tokenStore } from '~/auth/google_token_store'
 
+import { router as appengineRouter } from './appengine'
+
 const router = express.Router();
 
 router.use('/', (req, res, next) => {
   if (!req.user || !req.user.id) {
-    console.log('Not authenticated')
-    res.status(401).end()
+    res.status(401).send('Not authenticated').end()
     return
-    // TODO: Handle on client. Redirect or link to login.
   }
   const refreshToken = tokenStore.getRefreshToken(req.user.id)
   if (!refreshToken) {
@@ -19,6 +19,9 @@ router.use('/', (req, res, next) => {
   res.locals.accessToken = tokenStore.getAccessToken(refreshToken)
   next()
 })
+
+
+router.use('/project/:project/appengine', appengineRouter)
 
 router.get('/billing/accounts', (req, res) => {
   const path = ' https://cloudbilling.googleapis.com/v1/billingAccounts';
