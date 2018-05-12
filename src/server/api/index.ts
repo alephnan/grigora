@@ -1,6 +1,6 @@
 import * as axios from 'axios'
 import * as express from 'express'
-import { tokenStore } from './auth/google_token_store'
+import { tokenStore } from '~/auth/google_token_store'
 
 const router = express.Router();
 

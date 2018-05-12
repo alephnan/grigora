@@ -1,5 +1,5 @@
-import * as api from './api'
-import * as auth from './auth'
+import * as api from '~/api/index'
+import * as auth from '~/auth/index'
 import * as bodyParser from 'body-parser'
 import * as cookieParser from 'cookie-parser'
 import * as express from 'express'

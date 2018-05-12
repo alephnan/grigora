@@ -1,9 +1,9 @@
 import * as express from 'express'
 import * as passport from 'passport'
-import secrets from './google_secrets';
-
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20'
-import { tokenStore } from './google_token_store'
+
+import secrets from '~/auth/google_secrets'
+import { tokenStore } from '~/auth/google_token_store'
 
 const {
   web: {
