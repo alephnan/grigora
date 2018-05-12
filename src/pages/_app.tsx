@@ -1,4 +1,6 @@
 import Nav from 'src/components/Nav'
+import Header from 'src/components/Header'
+
 import App, { Container } from 'next/app'
 import React from 'react'
 import nextReduxWrapper from 'next-redux-wrapper'
@@ -6,41 +8,24 @@ import makeStore from 'src/store/store'
 import GrommetApp from 'grommet/components/App'
 import Split from 'grommet/components/Split'
 import Box from 'grommet/components/Box'
-import IconLanguage from 'grommet/components/icons/base/Language'
 import IconDashboard from 'grommet/components/icons/base/Article'
-import IconCaretDown from 'grommet/components/icons/base/CaretDown'
-import IconView from 'grommet/components/icons/base/View'
-import IconMail from 'grommet/components/icons/base/Mail'
-import IconLogout from 'grommet/components/icons/base/Logout'
 import IconActivity from 'grommet/components/icons/base/History'
-import IconShell from 'grommet/components/icons/base/Cli'
-import IconBug from 'grommet/components/icons/base/Bug'
-import IconConfigure from 'grommet/components/icons/base/Configure'
 import IconNext from 'grommet/components/icons/base/Next'
 import IconPrev from 'grommet/components/icons/base/Previous'
 import IconApps from 'grommet/components/icons/base/Apps'
-import IconHelp from 'grommet/components/icons/base/CircleQuestion'
 import IconBilling from 'grommet/components/icons/base/CreditCard'
-import IconCloud from 'grommet/components/icons/base/Cloud'
 import IconDragDrop from 'grommet/components/icons/base/Select'
 import IconPin from 'grommet/components/icons/base/Pin'
 import IconGroup from 'grommet/components/icons/base/Group'
 import IconStart from 'grommet/components/icons/base/Directions'
-import List from 'grommet/components/List'
-import ListItem from 'grommet/components/ListItem'
-import Header from 'grommet/components/Header'
-import Search from 'grommet/components/Search'
 import Menu from 'grommet/components/Menu'
 import Anchor from 'grommet/components/Anchor'
 import Link from 'next/link'
-import Title from 'grommet/components/Title'
 import Label from 'grommet/components/Label'
 import Tip from 'grommet/components/Tip'
 import Animate from 'grommet/components/Animate'
 import Slider from 'react-slick'
 import Paragraph from 'grommet/components/Paragraph'
-import Button from 'grommet/components/Button'
-import Columns from 'grommet/components/Columns'
 import Sidebar from 'grommet/components/Sidebar';
 import { Provider } from 'react-redux'
 
@@ -49,7 +34,6 @@ import IconAppEngine from 'grommet/components/icons/base/Launch'
 import IconKubernetes from 'grommet/components/icons/base/Cubes'
 import IconCompute from 'grommet/components/icons/base/Calculator'
 import IconSQL from 'grommet/components/icons/base/Database'
-import IconBigTable from 'grommet/components/icons/base/Table'
 import IconDatastore from 'grommet/components/icons/base/Inherit'
 import IconStorage from 'grommet/components/icons/base/Storage'
 import IconBigQuery from 'grommet/components/icons/base/Columns'
@@ -88,54 +72,7 @@ class MyApp extends App {
     return (
       <Container>
         <GrommetApp>
-          <Header>
-            <Animate enter={{ "animation": "fade", "duration": 4000, "delay": 0 }}>
-              <Title>
-                <IconCloud />
-                Bezel
-              </Title>
-            </Animate>
-            <Box flex={true}
-              justify='end'
-              direction='row'
-              responsive={false}>
-              <Search inline={true}
-                fill={true}
-                size='medium'
-                placeHolder='Search'
-                dropAlign={{ "right": "right" }} />
-              <Anchor href='#'
-                icon={<IconHelp />}>
-              </Anchor>
-              <Anchor href='#'
-                icon={<IconMail />}>
-              </Anchor>
-              <Anchor href='#'
-                icon={<IconShell />}>
-              </Anchor>
-              <Menu icon={<IconCaretDown />}
-                dropAlign={{ "right": "right" }}>
-                <Anchor href='#' icon={<IconLanguage />}>
-                  Language
-                </Anchor>
-                <Anchor href='#'
-                  icon={<IconConfigure />}
-                >
-                  Preferences
-                </Anchor>
-                <Anchor href='#'
-                  icon={<IconBug />}
-                >
-                  Report Bug
-                </Anchor>
-                <Anchor href='#'
-                  icon={<IconLogout />}
-                >
-                  Signout
-                </Anchor>
-              </Menu>
-            </Box>
-          </Header>
+          <Header />
           <Box id="slider-container" style={{ paddingLeft: '25px', paddingRight: '25px' }}>
             <Slider {...carouselSettings}
               prevArrow={<IconPrev />}
